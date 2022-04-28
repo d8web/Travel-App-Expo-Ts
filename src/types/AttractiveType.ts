@@ -5,6 +5,7 @@ export type AttractiveType = {
     idPark: number | null;
     type: "Mirante" | "Gruta" | "Cachoeira" | "Poço" | "Cânion";
     name: string;
+    title: string;
     image: ImageSourcePropType;
     desc: string;
     price: number;

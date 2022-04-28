@@ -96,7 +96,7 @@ const Map = () => {
                 return;
             }
 
-            if (status !== "granted") {
+            if(status !== "granted") {
                 setErrorMsg("Permission to access location was denied");
                 return;
             }
@@ -112,7 +112,7 @@ const Map = () => {
                     changeCityObject(regionName);
                 }
             );
-        } catch (error) {
+        }catch(error) {
             console.log(error);
             setErrorMsg("Permissão negada!");
         }
@@ -149,6 +149,7 @@ const Map = () => {
                             longitude: currentLocation.coords.longitude,
                         }}
                     />
+
                     {destLocation !== null &&
                         <Marker
                             title="Destino"
@@ -157,6 +158,7 @@ const Map = () => {
                             coordinate={destLocation}
                         />
                     }
+
                     {destLocation !== null &&
                         <MapViewDirections
                             origin={{
@@ -206,14 +208,16 @@ const Map = () => {
                     </View>
                 }
 
-                <TouchableOpacity
-                    style={Styles.ButtonGetLocation}
-                    onPress={getCurrentLocation}
-                >
-                    <Text style={Styles.TextButtonGetLoc}>
-                        Pegar localização
-                    </Text>
-                </TouchableOpacity>
+                {!loading &&
+                    <TouchableOpacity
+                        style={Styles.ButtonGetLocation}
+                        onPress={getCurrentLocation}
+                    >
+                        <Text style={Styles.TextButtonGetLoc}>
+                            Pegar localização
+                        </Text>
+                    </TouchableOpacity>
+                }
             </View>
         );
     }

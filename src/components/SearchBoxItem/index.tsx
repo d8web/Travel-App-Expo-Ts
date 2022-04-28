@@ -1,41 +1,29 @@
 import React from "react";
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import Styles from "./styles";
+import { TouchableOpacity, Text } from 'react-native';
+import { AttractiveType } from "../../types/AttractiveType";
 
 type Props = {
-    data: { title: string, name: string }
-    dataClick: (data: { title: string }) => any
+    data: AttractiveType
+    dataClick: (data: AttractiveType) => any
 }
 
-export default (props: Props) => {
+const SearchBoxItem = (props: Props) => {
 
     const itemClick = () => {
-        props.dataClick(props.data)
+        props.dataClick(props.data);
     }
 
     return (
         <TouchableOpacity
-            style={styles.itemArea}
+            style={Styles.ItemArea}
             onPress={itemClick}
         >
-            <Text style={styles.txt}>
+            <Text style={Styles.Txt}>
                 {props.data.name}
             </Text>
         </TouchableOpacity>
     );
 }
 
-const styles = StyleSheet.create({
-    itemArea: {
-        height: 50,
-        justifyContent: 'center',
-        padding: 10,
-        backgroundColor: '#fff',
-        borderLeftWidth: 1,
-        borderRightWidth: 1,
-        borderBottomWidth: 1,
-        borderColor: '#ccc'
-    },
-    txt: {
-        fontSize: 18
-    }
-});
+export default SearchBoxItem;
