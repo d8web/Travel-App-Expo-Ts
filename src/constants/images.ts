@@ -16,6 +16,14 @@ import Zilda03 from "../assets/atrativos/zilda/zilda_03.jpg";
 import Zilda04 from "../assets/atrativos/zilda/zilda_04.jpg";
 import Zilda05 from "../assets/atrativos/zilda/zilda_05.jpg";
 
+import TiraProsa from "../assets/atrativos/tiraprosa/tiraprosa.jpg";
+import TiraProsa01 from "../assets/atrativos/tiraprosa/tiraprosa_01.jpg"
+import TiraProsa02 from "../assets/atrativos/tiraprosa/tiraprosa_02.jpg"
+import TiraProsa03 from "../assets/atrativos/tiraprosa/tiraprosa_03.jpg"
+import TiraProsa04 from "../assets/atrativos/tiraprosa/tiraprosa_04.jpg"
+import TiraProsa05 from "../assets/atrativos/tiraprosa/tiraprosa_05.jpg"
+import TiraProsa06 from "../assets/atrativos/tiraprosa/tiraprosa_06.jpg"
+
 export const Images = {
     PreloadImage,
 
@@ -34,4 +42,12 @@ export const Images = {
     Zilda03,
     Zilda04,
     Zilda05,
+
+    TiraProsa,
+    TiraProsa01,
+    TiraProsa02,
+    TiraProsa03,
+    TiraProsa04,
+    TiraProsa05,
+    TiraProsa06,
 }

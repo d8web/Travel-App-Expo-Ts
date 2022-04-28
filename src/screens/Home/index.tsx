@@ -1,4 +1,4 @@
-import { SafeAreaView, View, Image, Text, ActivityIndicator, FlatList, TouchableOpacity, ScrollView } from "react-native";
+import { SafeAreaView, View, Text, ActivityIndicator, FlatList, TouchableOpacity, ScrollView } from "react-native";
 import { useState, useEffect } from "react";
 import Styles from "./styles";
 
@@ -17,16 +17,16 @@ import { MainTabProps } from "../../stacks/MainTab";
 
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../redux/hooks/useAppSelector";
-import { changeCityObject } from "../../redux/reducers/userReducer";
+import { changeCityObject, changeLocation } from "../../redux/reducers/userReducer";
+
+import { GetRegionName } from "../../helpers/LocationFunctions";
 
 const Home = () => {
-
     const dispatch = useDispatch();
-    const { cityObject } = useAppSelector(state => state.user);
+    const { cityObject, location } = useAppSelector(state => state.user);
 
     const navigation = useNavigation<MainTabProps>();
 
-    const [ location, setLocation ] = useState<null | object>(null);
     const [ errorMsg, setErrorMsg ] = useState<null | string>(null);
 
     const getLocationUser = async () => {
@@ -37,23 +37,17 @@ const Home = () => {
         }
 
         let location = await Location.getCurrentPositionAsync({});
-        setLocation(location);
+        dispatch( changeLocation(location) );
 
-        getRegionName(location);
-    }
-
-    const getRegionName = async (location: Location.LocationObject) => {
-        let { coords } = location;
-        let { latitude, longitude } = coords;
-
-        let regionName = await Location.reverseGeocodeAsync({ longitude, latitude });
-        dispatch( changeCityObject(regionName[0]) )
+        const regionName = await GetRegionName(location);
+        if(regionName) {
+            dispatch(changeCityObject(regionName[0]));
+        }
     }
 
     useEffect(() => {
         getLocationUser();
     }, []);
-
 
     return (
         <SafeAreaView style={Styles.container}>

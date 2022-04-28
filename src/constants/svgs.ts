@@ -19,6 +19,7 @@ import Parking from "../assets/svgs/parking.svg";
 import Toiled from "../assets/svgs/toilet.svg";
 import Check from "../assets/svgs/check.svg";
 import Times from "../assets/svgs/times.svg";
+import Focus from "../assets/svgs/focus.svg";
 
 export const Svgs = {
     User,
@@ -44,5 +45,6 @@ export const Svgs = {
     Parking,
     Toiled,
     Check,
-    Times
+    Times,
+    Focus
 }

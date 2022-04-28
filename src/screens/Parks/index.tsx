@@ -1,15 +1,21 @@
-import { Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { ImageBackground, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Styles from "./styles";
+import { LinearGradient } from "expo-linear-gradient";
 
 import { useAppSelector } from "../../redux/hooks/useAppSelector";
 
 import Parks from "../../data/Parks";
 import Header from "../../components/Header";
 import { Colors, Svgs } from "../../constants";
+import { useEffect } from "react";
 
 const Park = () => {
 
-    const { cityObject } = useAppSelector(state => state.user);
+    const { cityObject, location } = useAppSelector(state => state.user);
+
+    useEffect(() => {
+        // console.log(location)
+    }, []);
 
     return (
         <SafeAreaView style={Styles.Container}>
@@ -22,10 +28,23 @@ const Park = () => {
                     <TouchableOpacity key={key} style={{ marginBottom: 20 }}>
 
                         {typeof item.image !== "string" &&
-                            <Image
+                            <ImageBackground
                                 source={item.image[0]}
-                                style={{ width: "100%", height: 200, borderRadius: 10 }}
-                            />
+                                style={{ width: "100%", height: 240 }}
+                                borderRadius={10}
+                            >
+                                <LinearGradient
+                                    colors={["rgba(0,0,0,0.1)", "rgba(0,0,0,0.9)"]}
+                                    style={Styles.Background}
+                                >
+                                    <View style={Styles.ViewBottom}>
+                                        <View>
+                                            <Text style={Styles.TextCard}>{item.name}</Text>
+                                        </View>
+                                        <Text style={Styles.TextCard}>R$ {item.price.toFixed(2).replace(".", ",")}</Text>
+                                    </View>
+                                </LinearGradient>
+                            </ImageBackground>
                         }
 
                         <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 10, marginBottom: 10 }}>
@@ -81,11 +100,9 @@ const Park = () => {
                             </View>
                         </View>
 
-                        <Text>{item.name}</Text>
-                        <Text>R$ {item.price.toFixed(2).replace(".", ",")} p/pessoa</Text>
                         <Text>Cachoeira principal: {item.mainWaterfall}</Text>
-                        <Text>Qt atrativos: {item.quantityAttractives}</Text>
-                        <Text>Particular: {item.private ? "Sim" : "Não"}</Text>
+                        <Text>Quantidade de atrativos: {item.quantityAttractives}</Text>
+                        <Text style={{ marginBottom: 14 }}>Particular: {item.private ? "Sim" : "Não"}</Text>
                         <Text>Atrativos deste parque</Text>
                         {item.attractives.map(attractive => {
                             return (

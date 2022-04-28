@@ -47,7 +47,7 @@ const Parks: ParkType[] = [
     {
         id: 3,
         name: "Complexo Tira-Prosa",
-        image: [Images.Esmeralda05, Images.Esmeralda07], // Mudar imagens [Todo]
+        image: [Images.TiraProsa, Images.TiraProsa01], // Mudar imagens [Todo]
         price: 10,
         wifi: true,
         bath: true,

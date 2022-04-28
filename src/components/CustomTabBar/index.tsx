@@ -47,10 +47,22 @@ const CustomTabBar = ({ state, navigation }: Props) => {
 
             <TouchableOpacity
                 style={Styles.TabItem}
+                onPress={() => handleGo("Maps")}
+            >
+                <Svgs.Location
+                    style={{ opacity: state.index === 2 ? 1 : 0.6 }}
+                    width={24}
+                    height={24}
+                    fill="#fff"
+                />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+                style={Styles.TabItem}
                 onPress={() => handleGo("Favorites")}
             >
                 <Svgs.Favorite
-                    style={{ opacity: state.index === 2 ? 1 : 0.6 }}
+                    style={{ opacity: state.index === 3 ? 1 : 0.6 }}
                     width={26}
                     height={26}
                     fill="#fff"
@@ -62,7 +74,7 @@ const CustomTabBar = ({ state, navigation }: Props) => {
                 onPress={() => handleGo("Profile")}
             >
                 <Svgs.User
-                    style={{ opacity: state.index === 3 ? 1 : 0.6 }}
+                    style={{ opacity: state.index === 4 ? 1 : 0.6 }}
                     width={26}
                     height={26}
                     fill="#fff"
