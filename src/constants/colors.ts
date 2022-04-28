@@ -6,6 +6,7 @@ export const Colors = {
     green: "#0ca96d",
     dark: "#333333",
     white: "#ffffff",
+    red: "#CE1212",
     overlayBg: "rgba(0,0,0,0.55)",
     overlayWhite: "rgba(255,255,255,0.5)"
 };

@@ -167,10 +167,12 @@ const Map = () => {
                             }}
                             destination={destLocation}
                             apikey={KEY}
-                            strokeWidth={10}
-                            strokeColor={Colors.blue}
-                            mode="DRIVING"
-                            lineDashPattern={[0]}
+                            strokeWidth={6}
+                            strokeColor={Colors.red}
+                            optimizeWaypoints={true}
+                            onStart={(params) => {
+                                console.log(`Iniciando roteiro entre "${params.origin}" e "${params.destination}"`);
+                            }}
                             onReady={result => {
                                 setDistance(result.distance)
                                 setPrice(result.distance * 10);

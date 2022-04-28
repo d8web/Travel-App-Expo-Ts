@@ -10,7 +10,7 @@ type Props = {
     dataClick: (item: AttractiveType) => void;
 }
 
-export default (props: Props) => {
+const SearchBox = (props: Props) => {
 
     const [ textInput, setTextInput ] = useState("");
     const [ results, setResults ] = useState<AttractiveType[]>([]);
@@ -66,3 +66,5 @@ export default (props: Props) => {
         </View>
     );
 }
+
+export default SearchBox;
