@@ -7,6 +7,7 @@ import Favorites from "../screens/Favorites";
 import Profile from "../screens/Profile";
 import Map from "../screens/Map";
 import Parks from "../screens/Parks";
+import Attractive from "../screens/Atractive";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export type TabStackList = {
@@ -16,6 +17,9 @@ export type TabStackList = {
     Favorites: undefined;
     Profile: undefined;
     Parks: undefined;
+    Attractive: {
+        id: number;
+    };
 };
 
 export type MainTabProps = NativeStackNavigationProp<TabStackList>
@@ -34,5 +38,6 @@ export default () => (
         <Screen name="Favorites" component={Favorites}/>
         <Screen name="Profile" component={Profile}/>
         <Screen name="Parks" component={Parks}/>
+        <Screen name="Attractive" component={Attractive}/>
     </Navigator>
 );

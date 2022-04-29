@@ -80,7 +80,7 @@ const Home = () => {
                                 data={Attractives}
                                 horizontal
                                 showsHorizontalScrollIndicator={false}
-                                renderItem={({item, index}) => AttractiveItem(item)}
+                                renderItem={({item}) => AttractiveItem(item, navigation)}
                                 keyExtractor={(item) => item.id.toString()}
                             />
                         </View>

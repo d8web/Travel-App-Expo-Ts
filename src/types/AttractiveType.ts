@@ -1,12 +1,17 @@
 import { ImageSourcePropType } from "react-native";
 
+type ImagesAttractive = {
+    id: number;
+    image: ImageSourcePropType
+}
+
 export type AttractiveType = {
     id: number;
     idPark: number | null;
     type: "Mirante" | "Gruta" | "Cachoeira" | "Poço" | "Cânion";
     name: string;
     title: string;
-    image: ImageSourcePropType;
+    images: ImagesAttractive[];
     desc: string;
     price: number;
     latitude: number;

@@ -8,7 +8,16 @@ const Attractives: AttractiveType[] = [
         type: "Cachoeira",
         name: "Esmeralda",
         title: "Cachoeira da Esmeralda",
-        image: Images.Esmeralda07,
+        images: [
+            {
+                id: 1,
+                image: Images.Esmeralda07
+            },
+            {
+                id: 2,
+                image: Images.Esmeralda01
+            }
+        ],
         desc: "Uma linda cachoeira",
         price: 10,
         latitude: -21.468829,
@@ -35,7 +44,12 @@ const Attractives: AttractiveType[] = [
         type: "Cachoeira",
         name: "Zilda",
         title: "Cachoeira da Zilda",
-        image: Images.Zilda02,
+        images: [
+            {
+                id: 1,
+                image: Images.Zilda02
+            }
+        ],
         desc: "Uma linda cachoeira",
         price: 30,
         latitude: -21.5539006,

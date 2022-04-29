@@ -3,15 +3,16 @@ import { AttractiveType } from '../../types/AttractiveType';
 import Styles from './styles';
 import { LinearGradient } from "expo-linear-gradient";
 import { Svgs, Colors } from '../../constants';
+import { MainTabProps } from '../../stacks/MainTab';
 
-const AttractiveItem = (item: AttractiveType) => {
+const AttractiveItem = (item: AttractiveType, navigation: MainTabProps) => {
     return (
         <TouchableOpacity
-            onPress={() => alert(item.id)}
+            onPress={() => navigation.navigate("Attractive", { id: item.id })}
             style={Styles.Container}
         >
             <ImageBackground
-                source={item.image}
+                source={item.images[0].image}
                 style={Styles.Image} borderRadius={10}
             >
                 <LinearGradient
