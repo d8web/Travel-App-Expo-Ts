@@ -120,7 +120,9 @@ const Attractive = () => {
                     <Text style={Styles.FontDefault}>Lugar bom para crianças: {attractive.placeForChildren ? "Sim" : "Não"}</Text>
                     <Text style={Styles.FontDefault}>Propriedade privada: {attractive.private ? "Sim" : "Não"}</Text>
                     <Text style={Styles.FontDefault}>Profundidade média: {attractive.averageDepth}</Text>
-                    <Text style={Styles.FontDefault}>Altura média da queda d'agua: {attractive.averageHeightOfFall}</Text>
+                    {attractive.averageHeightOfFall !== null &&
+                        <Text style={Styles.FontDefault}>Altura média da queda d'agua: {attractive.averageHeightOfFall}</Text>
+                    }
                     <Text style={Styles.FontDefault}>Impróprio para banho ou consumo: {attractive.polluted ? "Sim" : "Não"}</Text>
                     <Text style={Styles.FontDefault}>Veículo recomendado: {attractive.vehicleRecomended ? "4X4" : "Qualquer veículo"}</Text>
                     {attractive.hasOwnProperty("observations") && attractive.observations !== "" &&

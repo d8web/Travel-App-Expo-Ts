@@ -16,6 +16,19 @@ import Zilda03 from "../assets/atrativos/zilda/zilda_03.jpg";
 import Zilda04 from "../assets/atrativos/zilda/zilda_04.jpg";
 import Zilda05 from "../assets/atrativos/zilda/zilda_05.jpg";
 
+import Proa from "../assets/atrativos/proa/proa.jpg";
+import Proa01 from "../assets/atrativos/proa/proa_01.jpg";
+import Proa02 from "../assets/atrativos/proa/proa_02.jpg";
+import Proa03 from "../assets/atrativos/proa/proa_03.jpg";
+import Proa04 from "../assets/atrativos/proa/proa_04.jpg";
+import Proa05 from "../assets/atrativos/proa/proa_05.jpg";
+
+import Guatambu from "../assets/atrativos/guatambu/guatambu.jpg";
+import Guatambu01 from "../assets/atrativos/guatambu/guatambu_01.jpg";
+import Guatambu02 from "../assets/atrativos/guatambu/guatambu_02.jpg";
+import Guatambu03 from "../assets/atrativos/guatambu/guatambu_03.jpg";
+import Guatambu04 from "../assets/atrativos/guatambu/guatambu_04.jpg";
+
 import TiraProsa from "../assets/atrativos/tiraprosa/tiraprosa.jpg";
 import TiraProsa01 from "../assets/atrativos/tiraprosa/tiraprosa_01.jpg"
 import TiraProsa02 from "../assets/atrativos/tiraprosa/tiraprosa_02.jpg"
@@ -42,6 +55,19 @@ export const Images = {
     Zilda03,
     Zilda04,
     Zilda05,
+
+    Proa,
+    Proa01,
+    Proa02,
+    Proa03,
+    Proa04,
+    Proa05,
+
+    Guatambu,
+    Guatambu01,
+    Guatambu02,
+    Guatambu03,
+    Guatambu04,
 
     TiraProsa,
     TiraProsa01,
