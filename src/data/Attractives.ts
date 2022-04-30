@@ -36,6 +36,7 @@ const Attractives: AttractiveType[] = [
         placeForChildren: true,
         averageDepth: "5m",
         averageHeightOfFall: "1m",
+        bestPhotos: true,
         observations: ""
     },
     {
@@ -68,6 +69,7 @@ const Attractives: AttractiveType[] = [
         placeForChildren: true,
         averageDepth: "5m",
         averageHeightOfFall: "4m",
+        bestPhotos: true,
         observations: ""
     }
 ];

@@ -6,7 +6,7 @@ const Styles = StyleSheet.create({
         flex: 1
     },
     Carousel: {
-        maxHeight: 280
+        maxHeight: 380
     },
     DotView: {
         flexDirection: "row",
@@ -64,6 +64,10 @@ const Styles = StyleSheet.create({
     Description: {
         fontSize: 16,
         marginBottom: 10
+    },
+    FontDefault: {
+        fontSize: 16,
+        marginBottom: 8
     },
     MarginTopAndBottom: {
         marginTop: 20,

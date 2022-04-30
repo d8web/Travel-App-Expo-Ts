@@ -30,5 +30,6 @@ export type AttractiveType = {
     placeForChildren: boolean;
     averageDepth: string;
     averageHeightOfFall?: string | null;
+    bestPhotos: boolean;
     observations?: string | null;
 }

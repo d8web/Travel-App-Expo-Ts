@@ -1,9 +1,9 @@
-import * as Location from "expo-location";
+import { LocationObject, reverseGeocodeAsync } from "expo-location";
 
-export const GetRegionName = async (location: Location.LocationObject) => {
+export const GetRegionName = async (location: LocationObject) => {
     let { coords } = location;
     let { latitude, longitude } = coords;
 
-    let regionName = await Location.reverseGeocodeAsync({ longitude, latitude });
+    let regionName = await reverseGeocodeAsync({ longitude, latitude });
     return regionName;
 }

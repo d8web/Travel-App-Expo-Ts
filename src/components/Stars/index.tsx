@@ -45,6 +45,6 @@ const Styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: "bold",
         marginLeft: 5,
-        color: "#737373"
+        color: Colors.gray
     }
 });

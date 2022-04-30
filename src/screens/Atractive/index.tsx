@@ -101,26 +101,31 @@ const Attractive = () => {
             <ScrollView style={Styles.AttractiveInfo}>
                 <View style={Styles.PaddingBottomView}>
                     <Text style={Styles.AttractiveName}>{attractive.title}</Text>
+                    <Text style={Styles.FontDefault}>{attractive.location}</Text>
 
                     <View style={[Styles.RowBetween, Styles.MarginTopAndBottom]}>
-                        <Text>R$ {attractive.price.toFixed(2).replace(".", ",")} p/pessoa.</Text>
+                        <Text style={Styles.FontDefault}>
+                            R$ {attractive.price.toFixed(2).replace(".", ",")} p/pessoa.
+                        </Text>
                         <Stars stars={attractive.rate} showNumber={true} />
                     </View>
 
                     <Text style={Styles.Description}>{attractive.desc}</Text>
 
-                    <Text>{attractive.location}</Text>
-                    <Text>{attractive.guide ? "Recomendado um guia!" : "Você consegue chegar sem guia"}</Text>
-                    <Text>Nível de caminhada: {attractive.walkingLevel}</Text>
-                    <Text>Tempo médio de caminhada: {attractive.averageWalkingTime}</Text>
-                    <Text>Tem pedras escorregadias: {attractive.slipperyStones ? "Sim" : "Não"}</Text>
-                    <Text>Distância de Carrancas: {attractive.distanceOfCarrancas}</Text>
-                    <Text>Lugar bom para crianças: {attractive.placeForChildren ? "Sim" : "Não"}</Text>
-                    <Text>Propriedade privada: {attractive.private ? "Sim" : "Não"}</Text>
-                    <Text>Profundidade média: {attractive.averageDepth}</Text>
-                    <Text>Altura média da queda d'agua: {attractive.averageHeightOfFall}</Text>
-                    <Text>Impróprio para banho ou consumo: {attractive.polluted ? "Sim" : "Não"}</Text>
-                    <Text>Veículo recomendado: {attractive.vehicleRecomended ? "4X4" : "Qualquer veículo"}</Text>
+                    <Text style={Styles.FontDefault}>Recomendado um guia: {attractive.guide ? "Sim!" : "Não!"}</Text>
+                    <Text style={Styles.FontDefault}>Nível de caminhada: {attractive.walkingLevel}</Text>
+                    <Text style={Styles.FontDefault}>Tempo médio de caminhada: {attractive.averageWalkingTime}</Text>
+                    <Text style={Styles.FontDefault}>Tem pedras escorregadias: {attractive.slipperyStones ? "Sim" : "Não"}</Text>
+                    <Text style={Styles.FontDefault}>Distância de Carrancas: {attractive.distanceOfCarrancas}</Text>
+                    <Text style={Styles.FontDefault}>Lugar bom para crianças: {attractive.placeForChildren ? "Sim" : "Não"}</Text>
+                    <Text style={Styles.FontDefault}>Propriedade privada: {attractive.private ? "Sim" : "Não"}</Text>
+                    <Text style={Styles.FontDefault}>Profundidade média: {attractive.averageDepth}</Text>
+                    <Text style={Styles.FontDefault}>Altura média da queda d'agua: {attractive.averageHeightOfFall}</Text>
+                    <Text style={Styles.FontDefault}>Impróprio para banho ou consumo: {attractive.polluted ? "Sim" : "Não"}</Text>
+                    <Text style={Styles.FontDefault}>Veículo recomendado: {attractive.vehicleRecomended ? "4X4" : "Qualquer veículo"}</Text>
+                    {attractive.hasOwnProperty("observations") && attractive.observations !== "" &&
+                        <Text style={Styles.FontDefault}>Observações: {attractive.observations}</Text>
+                    }
                 </View>
             </ScrollView>
             
