@@ -11,7 +11,7 @@ const Styles = StyleSheet.create({
         alignItems: "center",
         paddingTop: DefaultValues.padding,
         paddingLeft: DefaultValues.padding,
-        paddingRight: DefaultValues.padding
+        paddingRight: DefaultValues.padding,
     },
     Avatar: {
         width: 50,

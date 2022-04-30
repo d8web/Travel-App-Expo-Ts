@@ -1,4 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { Provider } from "react-redux";
 import { store } from "./src/redux/store";
@@ -9,7 +10,9 @@ const App = () => {
     return (
         <Provider store={store}>
             <NavigationContainer>
-                <MainStack/>
+                <GestureHandlerRootView style={{ flex: 1 }}>
+                    <MainStack/>
+                </GestureHandlerRootView>
             </NavigationContainer>
         </Provider>
     );

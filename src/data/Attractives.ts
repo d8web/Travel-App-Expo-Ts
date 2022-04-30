@@ -18,7 +18,7 @@ const Attractives: AttractiveType[] = [
                 image: Images.Esmeralda01
             }
         ],
-        desc: "Uma linda cachoeira",
+        desc: "Uma bela fonte com água verde e cristalina formada pela cachoeira da Esmeralda. Oferece momentos de contato direto e sintonia com o lugar. Sem dúvida uma das cachoeiras mais bonitas de Carrancas. A cachoeira da Esmeralda é de uma beleza incrível. Um lugar onde você pode se reconectar com a Mãe Natureza!",
         price: 10,
         latitude: -21.468829,
         longitude: -44.7051156,
@@ -50,7 +50,7 @@ const Attractives: AttractiveType[] = [
                 image: Images.Zilda02
             }
         ],
-        desc: "Uma linda cachoeira",
+        desc: "Uma linda queda com um poço um pouco agitado, além de uma bela pequena praia para descansar, assim podemos descrever esse lugar.Quer descansar e ainda apreciar a natureza? Conheça a cachoeira da Zilda.",
         price: 30,
         latitude: -21.5539006,
         longitude: -44.638605,
@@ -60,7 +60,7 @@ const Attractives: AttractiveType[] = [
         guide: false,
         private: true,
         popularLocation: true,
-        rate: 5,
+        rate: 4.5,
         walkingLevel: "Fácil",
         averageWalkingTime: "5min",
         slipperyStones: true,
