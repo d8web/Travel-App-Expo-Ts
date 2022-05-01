@@ -8,13 +8,13 @@ import MainStack from "./src/stacks/MainStack";
 
 const App = () => {
     return (
-        <Provider store={store}>
-            <NavigationContainer>
-                <GestureHandlerRootView style={{ flex: 1 }}>
-                    <MainStack/>
-                </GestureHandlerRootView>
-            </NavigationContainer>
-        </Provider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <Provider store={store}>
+                <NavigationContainer>
+                        <MainStack/>
+                </NavigationContainer>
+            </Provider>
+        </GestureHandlerRootView>
     );
 }
 

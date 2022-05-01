@@ -5,6 +5,11 @@ const Styles = StyleSheet.create({
     Container: {
         flex: 1
     },
+    LoadingArea: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    },
     TopArea: {
         position: "absolute",
         top: 0,
