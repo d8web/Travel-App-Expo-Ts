@@ -1,91 +1,59 @@
-import { useRef, useState, useMemo, useCallback } from "react";
-import { FlatList, ImageSourcePropType, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { useRef, useState } from "react";
+import { SafeAreaView, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Styles from "./styles";
-import { Colors } from "../../constants";
+import { Colors, Svgs } from "../../constants";
 
-import { useRoute, RouteProp } from "@react-navigation/native";
+import { useRoute, RouteProp, useNavigation } from "@react-navigation/native";
 import { getOneAttractiveById } from "../../helpers/AttractiveFunctions";
 import { AttractiveType } from "../../types/AttractiveType";
 
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
-import RenderImages from "../../components/SliderImages";
+import SliderImages from "../../components/SliderImages";
 import Stars from "../../components/Stars";
-
-const viewConfigRef = { viewAreaCoveragePercentThreshold: 95 }
 
 const Attractive = () => {
 
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const route = useRoute<RouteProp<{ params: { id: number } }, "params">>();
+    const navigation = useNavigation();
+
     const [isOpen, setIsOpen] = useState(true);
 
-    const route = useRoute<RouteProp<{ params: { id: number } }, "params">>();
-    const attractive = getOneAttractiveById(route?.params?.id);
-
-    type Props = { id: number; image: ImageSourcePropType }
-
-    let flatListRef = useRef<FlatList<Props> | null>();
-
-    const onViewRef = useRef(({ changed }: { changed: any }) => {
-        if (changed[0].isViewable) {
-            setCurrentIndex(changed[0].index);
-        }
-    });
-
-    const scrollToIndex = (index: number) => {
-        flatListRef.current?.scrollToIndex({ animated: true, index: index });
-    }
+    const attractive = getOneAttractiveById(route.params.id);
 
     const sheetRef = useRef<BottomSheet>(null);
-    const snapPoints = useMemo(() => ["3%", "60%"], []);
+    const snapPoints = ["3%", "60%"];
 
-    const data = useMemo(
-        () =>
-            [attractive],
-        []
-    );
+    const data = [attractive];
 
-    const renderItem = useCallback(
-        (item: AttractiveType) => (
+    const renderItem = (item: AttractiveType) => {
+        return (
             <View key={item.id} style={Styles.ItemContainer}>
                 <Text>{item.name}</Text>
             </View>
-        ),
-        []
-    );
+        )
+    }
 
-    const handleSnapPress = useCallback((index) => {
+    const handleSnapPress = (index: number) => {
         sheetRef.current?.snapToIndex(index);
         setIsOpen(true);
-    }, []);
+    };
 
     return (
         <SafeAreaView style={Styles.Container}>
-            <FlatList
-                data={attractive.images}
-                renderItem={RenderImages}
-                keyExtractor={(item) => item.id.toString()}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                pagingEnabled
-                ref={(ref) => {
-                    flatListRef.current = ref
-                }}
-                style={Styles.Carousel}
-                viewabilityConfig={viewConfigRef}
-                onViewableItemsChanged={onViewRef.current}
-            />
 
-            <View style={Styles.DotView}>
-                {attractive.images.map(({ }, index: number) => (
-                    <TouchableOpacity
-                        key={index.toString()}
-                        style={[Styles.Circle, {
-                            backgroundColor: index == currentIndex ? Colors.dark : Colors.gray
-                        }]}
-                        onPress={() => scrollToIndex(index)}
-                    />
-                ))}
+            <View style={Styles.TopArea}>
+                <TouchableOpacity
+                    style={Styles.ButtonTop}
+                    onPress={() => navigation.goBack()}
+                >
+                    <Svgs.ArrowLeft width={30} height={30} fill={Colors.white} />
+                </TouchableOpacity>
+                <TouchableOpacity style={Styles.ButtonTop}>
+                    <Svgs.Favorite width={30} height={30} fill={Colors.white} />
+                </TouchableOpacity>
             </View>
+
+            <SliderImages attractive={attractive} />
             
             {!isOpen &&
                 <View style={Styles.ButtonArea}>

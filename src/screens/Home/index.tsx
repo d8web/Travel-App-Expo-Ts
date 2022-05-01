@@ -20,8 +20,10 @@ import { useAppSelector } from "../../redux/hooks/useAppSelector";
 import { changeCityObject, changeLocation } from "../../redux/reducers/userReducer";
 
 import { GetRegionName } from "../../helpers/LocationFunctions";
+import { AttractiveType } from "../../types/AttractiveType";
 
 const Home = () => {
+    
     const dispatch = useDispatch();
     const { cityObject, location } = useAppSelector(state => state.user);
 
@@ -44,6 +46,19 @@ const Home = () => {
             dispatch(changeCityObject(regionName[0]));
         }
     }
+
+    const RenderAttractive = (item: AttractiveType) => (
+        <AttractiveItem
+            image={item.images[0].image}
+            name={item.name}
+            location={item.location}
+            onPress={() => {
+                navigation.navigate("Attractive", {
+                    id: item.id,
+                });
+            }}
+        />
+    );
 
     useEffect(() => {
         getLocationUser();
@@ -80,7 +95,7 @@ const Home = () => {
                                 data={Attractives}
                                 horizontal
                                 showsHorizontalScrollIndicator={false}
-                                renderItem={({item}) => AttractiveItem(item, navigation)}
+                                renderItem={({item}) => RenderAttractive(item)}
                                 keyExtractor={(item) => item.id.toString()}
                             />
                         </View>

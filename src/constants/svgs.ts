@@ -3,6 +3,7 @@ import Email from "../assets/svgs/email.svg";
 import Lock from "../assets/svgs/lock.svg";
 import Home from "../assets/svgs/home.svg";
 import Favorite from "../assets/svgs/favorite.svg";
+import FavoriteFull from "../assets/svgs/favorite_full.svg";
 import Search from "../assets/svgs/search.svg";
 import Travel from "../assets/svgs/travel.svg";
 import Location from "../assets/svgs/location.svg";
@@ -13,6 +14,7 @@ import Camera from "../assets/svgs/camera.svg";
 import Adventure from "../assets/svgs/adventure.svg";
 import Waterfall from "../assets/svgs/waterfall.svg";
 import ArrowRight from "../assets/svgs/arrow-right.svg";
+import ArrowLeft from "../assets/svgs/arrow-left.svg";
 import Wifi from "../assets/svgs/wifi.svg";
 import Restaurant from "../assets/svgs/restaurant.svg";
 import Parking from "../assets/svgs/parking.svg";
@@ -31,6 +33,7 @@ export const Svgs = {
 
     Home,
     Favorite,
+    FavoriteFull,
     Search,
     Travel,
     Location,
@@ -42,6 +45,7 @@ export const Svgs = {
     Adventure,
     Waterfall,
     ArrowRight,
+    ArrowLeft,
 
     Wifi,
     Restaurant,

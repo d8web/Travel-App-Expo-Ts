@@ -5,20 +5,24 @@ const Styles = StyleSheet.create({
     Container: {
         flex: 1
     },
-    Carousel: {
-        maxHeight: 380
-    },
-    DotView: {
+    TopArea: {
+        position: "absolute",
+        top: 0,
+        height: 60,
+        width: "100%",
+        backgroundColor: "transparent",
+        zIndex: 100,
         flexDirection: "row",
-        justifyContent: "center",
-        paddingVertical: 20
+        justifyContent: "space-between",
+        padding: 20
     },
-    Circle: {
-        width: 10,
-        height: 10,
-        backgroundColor: Colors.gray,
-        borderRadius: 50,
-        marginHorizontal: 5
+    ButtonTop: {
+        width: 60,
+        height: 60,
+        backgroundColor: Colors.dark,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 50
     },
     ContentContainer: {
         padding: 10,
