@@ -1,4 +1,4 @@
-import { useRef, useState, useLayoutEffect, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { ActivityIndicator, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Styles from "./styles";
 import { Colors, Svgs } from "../../constants";
@@ -10,11 +10,12 @@ import { AttractiveType } from "../../types/AttractiveType";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import SliderImages from "../../components/SliderImages";
 import Stars from "../../components/Stars";
+import { MainTabProps } from "../../stacks/MainTab";
 
 const Attractive = () => {
 
     const route = useRoute<RouteProp<{ params: { id: number } }, "params">>();
-    const navigation = useNavigation();
+    const navigation = useNavigation<MainTabProps>();
 
     const [isOpen, setIsOpen] = useState(true);
     const [loading, setLoading] = useState(true);
@@ -90,6 +91,12 @@ const Attractive = () => {
                         </TouchableOpacity>
                     </View>
                 }
+
+                <View>
+                    <TouchableOpacity onPress={() => navigation.navigate("Maps", {})}>
+                        <Text>Traçar rota</Text>
+                    </TouchableOpacity>
+                </View>
 
                 <ScrollView style={Styles.AttractiveInfo}>
                     <View style={Styles.PaddingBottomView}>

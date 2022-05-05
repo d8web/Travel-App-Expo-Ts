@@ -17,22 +17,28 @@ import { changeCityObject, changeLocation } from "../../redux/reducers/userReduc
 import { GetRegionName } from "../../helpers/LocationFunctions";
 
 const Data = [
-    { id: 1, type: "Carro Padrão", price: 15 },
-    { id: 1, type: "Carro 4X4", price: 30 }
+    { id: 1, type: "Carro Padrão", price: 15, min: 4, max: 4, ocupations: [ 4, 8 ] },
+    { id: 2, type: "Of Road", price: 30, min: 4, max: 8, ocupations: [ 4, 8 ]  },
+    { id: 3, type: "Quadriciclo", price: 30, min: 1, max: 2 },
+    { id: 4, type: "Van", price: 15, min: 5, max: 18, ocupations: [ 5, 18 ] }
 ];
 
 const Map = () => {
 
     const dispatch = useDispatch();
-    const { location } = useAppSelector(state => state.user);
+    const { location, cityObject } = useAppSelector(state => state.user);
+
+    const addressCompleted = `${cityObject.street}, ${cityObject.streetNumber} - ${cityObject.district} - ${cityObject.region}, ${cityObject.postalCode}, ${cityObject.country}`
 
     const navigation = useNavigation<MainTabProps>();
 
     const [map, setMap] = useState<null | MapView>(null);
     const [currentLocation, setCurrentLoc] = useState<Location.LocationObject | null>(null);
     const [destLocation, setDestLocation] = useState<Props | null>(null);
+    const [showModalInfo, setShowModalInfo] = useState(false);
     const [errorMsg, setErrorMsg] = useState<string>("");
-    const [distance, setDistance] = useState(null);
+    const [time, setTime] = useState<number | null>(null);
+    const [distance, setDistance] = useState<number | null>(null);
     const [price, setPrice] = useState<number | null>(null);
     const [options, setOptions] = useState(Data);
     const [guia, setGuia] = useState<boolean | undefined>(false);
@@ -66,7 +72,7 @@ const Map = () => {
         map?.fitToSuppliedMarkers(["OriginMarker", "DestinationMarker"], {
             edgePadding: {
                 left: 100,
-                top: 280,
+                top: 500,
                 right: 100,
                 bottom: 200
             },
@@ -138,7 +144,18 @@ const Map = () => {
                         latitudeDelta: 0.004,
                         longitudeDelta: 0.004
                     }}
+                    camera={{
+                        center: {
+                            latitude: currentLocation.coords.latitude,
+                            longitude: currentLocation.coords.longitude
+                        },
+                        zoom: 16,
+                        pitch: 0,
+                        altitude: 0,
+                        heading: 0
+                    }}
                     mapType="standard"
+                    // onRegionChangeComplete={() => {}}
                 >
                     <Marker
                         title="Minha Localização"
@@ -171,11 +188,13 @@ const Map = () => {
                             strokeColor={Colors.red}
                             optimizeWaypoints={true}
                             onStart={(params) => {
-                                console.log(`Iniciando roteiro entre "${params.origin}" e "${params.destination}"`);
+                                // console.log(`Iniciando roteiro entre "${params.origin}" e "${params.destination}"`);
                             }}
                             onReady={result => {
                                 setDistance(result.distance)
                                 setPrice(result.distance * 10);
+                                setTime(result.duration);
+                                setShowModalInfo(true);
                             }}
                         />
                     }
@@ -183,11 +202,84 @@ const Map = () => {
 
                 <SearchBox dataClick={searchBoxClick} />
 
+                {addressCompleted &&
+                    <View style={{ position: "absolute", top: 120, width: "100%", justifyContent: "center", alignItems: "center", left: 0, backgroundColor: "#fff", paddingHorizontal: 10, paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: "red" }}>
+                        <Text style={{ fontSize: 15 }}>{addressCompleted}</Text>
+                    </View>
+                }
+
+                {distance !== null && time !== null && price !== null && showModalInfo &&
+                    <View style={{
+                        backgroundColor: "#fff",
+                        width: "100%",
+                        height: 150,
+                        position: "absolute",
+                        justifyContent: "center",
+                        top: 184,
+                        padding: 20
+                    }}>
+                        <View style={{
+                            flexDirection: "row",
+                            justifyContent: "space-around",
+                            alignItems: "center",
+                            marginBottom: 20
+                        }}>
+                            <View style={{ justifyContent: "center", alignItems: "center" }}>
+                                <Text>Distância</Text>
+                                <Text>{distance.toFixed(1)}Km</Text>
+                            </View>
+                            <View style={{ justifyContent: "center", alignItems: "center" }}>
+                                <Text>Tempo</Text>
+                                <Text>{time.toFixed(0)}mins</Text>
+                            </View>
+                            <View style={{ justifyContent: "center", alignItems: "center" }}>
+                                <Text>Preço</Text>
+                                <Text>R$ {price.toFixed(2).replace(".", ",")}</Text>
+                            </View>
+                        </View>
+
+                        <View style={{ flexDirection: "row", paddingHorizontal: 5, justifyContent: "space-around" }}>
+                            <TouchableOpacity style={{
+                                width: "48%",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                backgroundColor: Colors.dark,
+                                padding: 10
+                            }}>
+                                <Text style={{ color: Colors.white, fontSize: 16 }}>Solicitar motorista</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    setShowModalInfo(false);
+                                    setDestLocation(null);
+                                    setDistance(null);
+                                    setTime(null);
+                                    setPrice(null);
+
+                                    setCurrentLoc(location);
+                                }}
+                                style={{
+                                    width: "48%",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    backgroundColor:
+                                    Colors.red,
+                                    padding: 10
+                                }}>
+                                <Text style={{ color: Colors.white, fontSize: 16 }}>Cancelar</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                }
+
                 <TouchableOpacity
                     style={Styles.ButtonRealign}
                     onPress={() => {
                         getCurrentLocation();
                         realignMap();
+                        if(price !== null && time !== null && distance !== null) {
+                            setShowModalInfo(true);
+                        }
                     }}
                 >
                     <Svgs.Focus width={38} height={38} fill={Colors.white} />

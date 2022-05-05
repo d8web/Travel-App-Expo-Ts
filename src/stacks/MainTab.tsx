@@ -13,7 +13,10 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 export type TabStackList = {
     Home: undefined;
     Search: undefined;
-    Maps: undefined;
+    Maps: {
+        latitude?: number;
+        longitude?: number;
+    }
     Favorites: undefined;
     Profile: undefined;
     Parks: undefined;
