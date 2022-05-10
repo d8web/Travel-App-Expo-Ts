@@ -11,15 +11,19 @@ import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import SliderImages from "../../components/SliderImages";
 import Stars from "../../components/Stars";
 import { MainTabProps } from "../../stacks/MainTab";
+import Api from "../../services/Api";
 
 const Attractive = () => {
 
     const route = useRoute<RouteProp<{ params: { id: number } }, "params">>();
     const navigation = useNavigation<MainTabProps>();
 
+    const { id } = route.params;
+
     const [isOpen, setIsOpen] = useState(true);
     const [loading, setLoading] = useState(true);
-    const [attractive, setAttractiveItem] = useState<AttractiveType | undefined>();
+    const [attractive, setAttractive] = useState<AttractiveType | undefined>();
+    const [favorited, setFavorited] = useState(false);
     const [attractivesRelated, setAttractivesRelated] = useState<AttractiveType[] | []>();
 
     const sheetRef = useRef<BottomSheet>(null);
@@ -33,6 +37,17 @@ const Attractive = () => {
         );
     }
 
+    const handleFavorited = async () => {
+        if(attractive !== undefined) {
+            setFavorited(!favorited)
+    
+            let res = await Api.toogleFavorite(attractive.id);
+            if(res.error !== "") {
+                alert(res.error);
+            }
+        }
+    }
+
     const handleSnapPress = (index: number) => {
         sheetRef.current?.snapToIndex(index);
         setIsOpen(true);
@@ -40,21 +55,32 @@ const Attractive = () => {
 
     useEffect(() => {
 
-        setAttractiveItem(undefined);
+        let unmounted = false;
 
-        setLoading(true);
-        setAttractiveItem(getOneAttractiveById(route.params.id));
-        
-        if(attractive !== undefined && attractive.idPark !== null) {
-            let res = getAttractivesListFromPark(attractive.idPark, attractive.id);
-            setAttractivesRelated(res);
+        const getAttractiveInfo = async () => {
+            setLoading(true);
+
+            let json = await Api.getOneAttractive(id);
+            if (json.error === "") {
+                setTimeout(() => {
+                    if (!unmounted) {
+                        setAttractive(json.data);
+                        setFavorited(json.data.favorited);
+                        setLoading(false);
+                    }
+                }, 100);
+            } else {
+                alert('Erro: ' + json.error)
+            }
         }
 
-        setTimeout(() => {
-            setLoading(false);
-        }, 1000);
+        getAttractiveInfo();
 
-    }, [route.params.id, attractive]);
+        return () => {
+            unmounted = true;
+        }
+
+    }, [ id ]);
 
     if(attractive !== undefined) {
         if(loading) {
@@ -74,12 +100,18 @@ const Attractive = () => {
                     >
                         <Svgs.ArrowLeft width={30} height={30} fill={Colors.white} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={Styles.ButtonTop}>
-                        <Svgs.Favorite width={30} height={30} fill={Colors.white} />
+                    <TouchableOpacity style={Styles.ButtonTop} onPress={handleFavorited}>
+                        {favorited ?
+                            <Svgs.FavoriteFull width={30} height={30} fill={Colors.red} />
+                            :
+                            <Svgs.Favorite width={30} height={30} fill={Colors.red} />
+                        }
                     </TouchableOpacity>
                 </View>
 
-                <SliderImages attractive={attractive} />
+                {attractive !== undefined &&
+                    <SliderImages attractive={attractive} />
+                }
 
                 {!isOpen &&
                     <View style={Styles.ButtonArea}>
@@ -110,7 +142,7 @@ const Attractive = () => {
                             <Stars stars={attractive.rate} showNumber={true} />
                         </View>
 
-                        <Text style={Styles.Description}>{attractive.desc}</Text>
+                        <Text style={Styles.Description}>{attractive.description}</Text>
 
                         <Text style={Styles.FontDefault}>Recomendado um guia: {attractive.guide ? "Sim!" : "Não!"}</Text>
                         <Text style={Styles.FontDefault}>Nível de caminhada: {attractive.walkingLevel}</Text>

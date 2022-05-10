@@ -1,7 +1,6 @@
 import AsyncStorageLib from "@react-native-async-storage/async-storage";
-import Attractives from "../data/Attractives";
 
-const BASE_API: string = "https://api.b7web.com.br/devbarber/api";
+const BASE_API: string = "http://192.168.1.103/carrancas_backend/public/api";
 
 export default {
     checkToken: async (token: string) => {
@@ -39,12 +38,109 @@ export default {
         });
         const json = await req.json();
         return json;
+    },
+    getAttractives: async () => {
+        const token = await AsyncStorageLib.getItem("token");
+
+        const req = await fetch(`${BASE_API}/attractives`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        const json = await req.json();
+        return json;
+    },
+    getOneAttractive: async (id: number) => {
+        const token = await AsyncStorageLib.getItem("token");
+
+        const req = await fetch(`${BASE_API}/attractive/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        const json = await req.json();
+        return json;
+    },
+    getPopularAttractives: async () => {
+        const token = await AsyncStorageLib.getItem("token");
+
+        const req = await fetch(`${BASE_API}/popularlocations`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        const json = await req.json();
+        return json;
+    },
+    search: async (name: string) => {
+        const token = await AsyncStorageLib.getItem("token");
+
+        const req = await fetch(`${BASE_API}/search?q=${name}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        const json = await req.json();
+        return json;
+    },
+    getFavorites: async () => {
+        const token = await AsyncStorageLib.getItem("token");
+
+        const req = await fetch(`${BASE_API}/user/favorites`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        const json = await req.json();
+        return json;
+    },
+    toogleFavorite: async (id: number) => {
+        const token = await AsyncStorageLib.getItem("token");
+
+        const req = await fetch(`${BASE_API}/user/favorite`, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({ id_attractive: id })
+        })
+        const json = await req.json();
+        return json;
+    },
+    logout: async () => {
+        const token = await AsyncStorageLib.getItem("token");
+
+        const req = await fetch(`${BASE_API}/auth/logout`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        const json = await req.json();
+        return json;
     }
 }
 
-export const makeLocationSearch = (locTxt: string) => {
-    let res = Attractives.filter((item) => item.name.toLocaleLowerCase().indexOf(locTxt.toLocaleLowerCase()) > -1)
-    return res;
+// export const makeLocationSearch = (locTxt: string) => {
+//     let res = Attractives.filter(item =>
+//         item.name.toLocaleLowerCase().indexOf(locTxt.toLocaleLowerCase()) > -1
+//     );
+    
+//     return res;
+// }
+
+export const makeLocationSearch = async (locTxt: string) => {
+    const token = await AsyncStorageLib.getItem("token");
+
+    const req = await fetch(`${BASE_API}/search?q=${locTxt}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    const json = await req.json();
+    return json;
 }
 
 export const makeTripLocationSearch = (origin: string, destination: string) => {

@@ -12,7 +12,7 @@ export type ParkType = {
     parking: boolean;
     private: boolean;
     hotel: boolean;
-    attractives: AttractiveType[] | [];
+    attractives?: AttractiveType[] | [];
     quantityAttractives: number;
     mainWaterfall: string | null;
     latitude: number;

@@ -2,7 +2,7 @@ import { ImageSourcePropType } from "react-native";
 
 export type TourType = {
     id: number;
-    agency: string;
+    idAgency: number;
     website?: string;
     phone: string;
     meansOfLocomotion: "4X4" | "Carro padrão" | "Quadriciclo" | "Bicicleta" | "Cavalo" | "Caminhada";

@@ -2,7 +2,7 @@ import { ImageSourcePropType } from "react-native";
 
 export type GuidesType = {
     id: number;
-    nameGuide: string;
+    idGuide: number;
     groups?: boolean;
     phone: string;
     isphotographer: boolean;

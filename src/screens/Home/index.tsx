@@ -7,7 +7,6 @@ import * as Location from 'expo-location';
 import { Colors, Svgs } from "../../constants";
 
 import Categories from "../../data/Categories";
-import Attractives from "../../data/Attractives";
 
 import Header from "../../components/Header";
 import CategoryItem from "../../components/Category";
@@ -21,6 +20,7 @@ import { changeCityObject, changeLocation } from "../../redux/reducers/userReduc
 
 import { GetRegionName } from "../../helpers/LocationFunctions";
 import { AttractiveType } from "../../types/AttractiveType";
+import Api from "../../services/Api";
 
 const Home = () => {
     
@@ -30,6 +30,9 @@ const Home = () => {
     const navigation = useNavigation<MainTabProps>();
 
     const [ errorMsg, setErrorMsg ] = useState<null | string>(null);
+    const [ loading, setLoading ] = useState(false);
+
+    const [ attractives, setAttractives ] = useState<AttractiveType[]>([]);
 
     const getLocationUser = async () => {
         let { status } = await Location.requestForegroundPermissionsAsync();
@@ -49,8 +52,8 @@ const Home = () => {
 
     const RenderAttractive = (item: AttractiveType) => (
         <AttractiveItem
-            image={item.images[0].image}
-            name={item.name}
+            image={item.image}
+            title={item.title}
             location={item.location}
             onPress={() => {
                 navigation.navigate("Attractive", {
@@ -60,8 +63,22 @@ const Home = () => {
         />
     );
 
+    const getAllAttractives = async () => {
+        setLoading(true);
+        setAttractives([]);
+
+        let res = await Api.getAttractives();
+        setAttractives(res.list);
+        setLoading(false);
+    }
+
+    const handleGoPopular = () => {
+        navigation.navigate("PopularLocations");
+    }
+
     useEffect(() => {
         getLocationUser();
+        getAllAttractives();
     }, []);
 
     return (
@@ -80,7 +97,7 @@ const Home = () => {
                             renderItem={({item, index}) => CategoryItem(item, index, navigation)}
                             keyExtractor={(item) => item.id.toString()}
                         />
-                        <TouchableOpacity style={Styles.PopularPlaces}>
+                        <TouchableOpacity style={Styles.PopularPlaces} onPress={handleGoPopular}>
                             <Text style={Styles.TextPopular}>Lugares populares</Text>
                             <View style={Styles.ArrowTextArea}>
                                 <Text style={Styles.BoldText}>Ver</Text>
@@ -92,8 +109,9 @@ const Home = () => {
                     <ScrollView showsVerticalScrollIndicator={false} style={Styles.ScrollArea}>
                         <View style={Styles.AttractivesArea}>
                             <FlatList
-                                data={Attractives}
+                                data={attractives}
                                 horizontal
+                                initialNumToRender={10}
                                 showsHorizontalScrollIndicator={false}
                                 renderItem={({item}) => RenderAttractive(item)}
                                 keyExtractor={(item) => item.id.toString()}

@@ -11,8 +11,8 @@ export type AttractiveType = {
     type: "Mirante" | "Gruta" | "Cachoeira" | "Poço" | "Cânion";
     name: string;
     title: string;
-    images: ImagesAttractive[];
-    desc: string;
+    image: string;
+    description: string;
     price: number;
     latitude: number;
     longitude: number;
@@ -32,4 +32,7 @@ export type AttractiveType = {
     averageHeightOfFall?: string | null;
     bestPhotos: boolean;
     observations?: string | null;
+    photos?: [
+        { id: number; url: string }
+    ];
 }

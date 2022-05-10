@@ -1,13 +1,12 @@
 import { AttractiveType } from "../types/AttractiveType";
 import { ParkType } from "../types/ParkType";
-import Attractives from "./Attractives";
 
-import { Images } from "../constants"; 
+import { Images } from "../constants";
 
-const getAttractivesFromPark = (idPark: number): AttractiveType[] | [] => {
-    const attractivesPark = Attractives.filter(item => item.idPark === idPark);
-    return attractivesPark;
-}
+// const getAttractivesFromPark = (idPark: number, Attractives: AttractiveType[]): AttractiveType[] | [] => {
+//     const attractivesPark = Attractives.filter(item => item.idPark === idPark);
+//     return attractivesPark;
+// }
 
 const Parks: ParkType[] = [
     {
@@ -21,8 +20,8 @@ const Parks: ParkType[] = [
         parking: true,
         private: true,
         hotel: false,
-        attractives: getAttractivesFromPark(1),
-        quantityAttractives: getAttractivesFromPark(1).length,
+        attractives: [],
+        quantityAttractives: 1,
         mainWaterfall: "Esmeralda",
         latitude: 10,
         longitude: 10
@@ -38,8 +37,8 @@ const Parks: ParkType[] = [
         parking: true,
         private: true,
         hotel: false,
-        attractives: getAttractivesFromPark(2),
-        quantityAttractives: getAttractivesFromPark(2).length,
+        attractives: [],
+        quantityAttractives: 3,
         mainWaterfall: "Cachoeira da Zilda",
         latitude: 10,
         longitude: 10
@@ -56,7 +55,7 @@ const Parks: ParkType[] = [
         private: true,
         hotel: true,
         attractives: [],
-        quantityAttractives: getAttractivesFromPark(3).length,
+        quantityAttractives: 3,
         mainWaterfall: "Poço Tira Prosa",
         latitude: 10,
         longitude: 10

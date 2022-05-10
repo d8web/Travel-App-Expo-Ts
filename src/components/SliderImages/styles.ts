@@ -12,7 +12,8 @@ const Styles = StyleSheet.create({
     DotView: {
         flexDirection: "row",
         justifyContent: "center",
-        paddingVertical: 20
+        paddingVertical: 20,
+        marginTop: -50
     },
     Circle: {
         width: 10,
@@ -20,6 +21,13 @@ const Styles = StyleSheet.create({
         backgroundColor: Colors.gray,
         borderRadius: 50,
         marginHorizontal: 5
+    },
+    Background: {
+        width: "100%",
+        height: "100%",
+        justifyContent: "flex-end",
+        alignItems: "flex-start",
+        paddingLeft: 24
     },
 });
 

@@ -19,9 +19,9 @@ const SearchBox = (props: Props) => {
         setTextInput(text);
     }
 
-    const handleSearch = () => {
+    const handleSearch = async () => {
         if(textInput != "") {
-            setResults(makeLocationSearch(textInput));
+            setResults(await makeLocationSearch(textInput));
         }
     }
 

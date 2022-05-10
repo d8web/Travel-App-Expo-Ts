@@ -1,4 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import CustomTabBar from "../components/CustomTabBar";
 
 import Home from "../screens/Home";
@@ -8,7 +9,7 @@ import Profile from "../screens/Profile";
 import Map from "../screens/Map";
 import Parks from "../screens/Parks";
 import Attractive from "../screens/Atractive";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import PopularLocations from "../screens/PopularLocations";
 
 export type TabStackList = {
     Home: undefined;
@@ -23,6 +24,7 @@ export type TabStackList = {
     Attractive: {
         id: number;
     };
+    PopularLocations: undefined;
 };
 
 export type MainTabProps = NativeStackNavigationProp<TabStackList>
@@ -42,5 +44,6 @@ export default () => (
         <Screen name="Profile" component={Profile}/>
         <Screen name="Parks" component={Parks}/>
         <Screen name="Attractive" component={Attractive}/>
+        <Screen name="PopularLocations" component={PopularLocations}/>
     </Navigator>
 );

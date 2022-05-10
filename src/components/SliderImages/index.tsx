@@ -1,5 +1,6 @@
+import { LinearGradient } from "expo-linear-gradient";
 import { useRef, useState } from "react";
-import { TouchableOpacity, ImageBackground, ImageSourcePropType, Dimensions, FlatList, View } from "react-native";
+import { TouchableOpacity, ImageBackground, Dimensions, FlatList, View } from "react-native";
 import { Colors } from "../../constants";
 import { AttractiveType } from "../../types/AttractiveType";
 import Styles from "./styles";
@@ -9,7 +10,7 @@ const { width } = Dimensions.get("window");
 
 type Props = {
     id: number;
-    image: ImageSourcePropType
+    url: string;
 }
 
 const RenderImages: React.FC<{ item: Props }> = ({ item }) => {
@@ -19,9 +20,13 @@ const RenderImages: React.FC<{ item: Props }> = ({ item }) => {
             activeOpacity={1}
         >
             <ImageBackground
-                source={item.image}
+                source={{ uri: item.url }}
                 style={[Styles.Image, { width }]}
             >
+                <LinearGradient
+                    colors={["transparent", "rgba(0,0,0,0.5)"]}
+                    style={Styles.Background}
+                ></LinearGradient>
             </ImageBackground>
         </TouchableOpacity>
     )
@@ -50,7 +55,7 @@ const SliderImages = ({ attractive }: PropsAttractive) => {
     return (
         <>
             <FlatList
-                data={attractive.images}
+                data={attractive.photos}
                 renderItem={RenderImages}
                 keyExtractor={(item) => item.id.toString()}
                 horizontal
@@ -65,11 +70,11 @@ const SliderImages = ({ attractive }: PropsAttractive) => {
             />
 
             <View style={Styles.DotView}>
-                {attractive.images.map(({ }, index: number) => (
+                {attractive.photos?.map(({ }, index: number) => (
                     <TouchableOpacity
                         key={index.toString()}
                         style={[Styles.Circle, {
-                            backgroundColor: index == currentIndex ? Colors.dark : Colors.gray
+                            backgroundColor: index == currentIndex ? Colors.blue : Colors.gray
                         }]}
                         onPress={() => scrollToIndex(index)}
                     />

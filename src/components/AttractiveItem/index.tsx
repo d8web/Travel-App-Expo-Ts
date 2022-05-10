@@ -1,24 +1,23 @@
-import { ImageBackground, ImageSourcePropType, Text, TouchableOpacity, View } from 'react-native';
-import { AttractiveType } from '../../types/AttractiveType';
+import { ImageBackground, Text, TouchableOpacity, View } from 'react-native';
 import Styles from './styles';
 import { LinearGradient } from "expo-linear-gradient";
 import { Svgs, Colors } from '../../constants';
 
 type Props = {
-    image: ImageSourcePropType;
-    name: string;
+    image: string;
+    title: string;
     location: string;
     onPress: () => any
 }
 
-const AttractiveItem = ({image, name, location, onPress}: Props) => {
+const AttractiveItem = ({image, title, location, onPress}: Props) => {
     return (
         <TouchableOpacity
             onPress={onPress}
             style={Styles.Container}
         >
             <ImageBackground
-                source={image}
+                source={{ uri: image }}
                 style={Styles.Image} borderRadius={10}
             >
                 <LinearGradient
@@ -27,7 +26,7 @@ const AttractiveItem = ({image, name, location, onPress}: Props) => {
                 >
                     <View style={Styles.ViewBottom}>
                         <View>
-                            <Text style={Styles.TextCard}>{name}</Text>
+                            <Text style={Styles.TextCard}>{title}</Text>
                             <Text style={Styles.SmallText}>{location}</Text>
                         </View>
                         <Svgs.Location width={20} height={20} fill={Colors.white} />
