@@ -6,9 +6,23 @@ const Styles = StyleSheet.create({
         flex: 1
     },
     ParksArea: {
+        flex: 1,
         paddingLeft: DefaultValues.padding,
         paddingRight: DefaultValues.padding,
-        marginTop: 30
+        marginTop: 30,
+    },
+    GetLocationArea: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    ParkItemArea: {
+        height: 240,
+        marginBottom: 30
+    },
+    Image: {
+        flex: 1,
+        height: "100%"
     },
     Background: {
         borderRadius: 10,
@@ -16,19 +30,23 @@ const Styles = StyleSheet.create({
         height: "100%",
         justifyContent: "flex-end",
         alignItems: "flex-start",
-        paddingLeft: 18
+        paddingLeft: 24
     },
     ViewBottom: {
         width: "100%",
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        paddingRight: 18,
-        paddingBottom: 10
+        paddingRight: 24,
+        paddingBottom: 15
     },
     TextCard: {
         color: Colors.white,
         fontSize: 16
+    },
+    SmallText: {
+        color: Colors.gray,
+        fontSize: 12
     }
 });
 

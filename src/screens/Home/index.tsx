@@ -85,7 +85,7 @@ const Home = () => {
         <SafeAreaView style={Styles.container}>
             <StatusBar style="light" translucent={false} />
             
-            {cityObject !== null && location !== null &&
+            {cityObject !== null && location !== null && attractives.length > 0 &&
                 <>
                     <Header cityObject={cityObject} />
 
@@ -116,7 +116,7 @@ const Home = () => {
                                 renderItem={({item}) => RenderAttractive(item)}
                                 keyExtractor={(item) => item.id.toString()}
                             />
-                        </View>
+                        </View>    
                     </ScrollView>
                 </>
             }

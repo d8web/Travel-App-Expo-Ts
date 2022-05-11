@@ -109,6 +109,17 @@ export default {
         const json = await req.json();
         return json;
     },
+    getParks: async () => {
+        const token = await AsyncStorageLib.getItem("token");
+
+        const req = await fetch(`${BASE_API}/parks`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        const json = await req.json();
+        return json;
+    },
     logout: async () => {
         const token = await AsyncStorageLib.getItem("token");
 

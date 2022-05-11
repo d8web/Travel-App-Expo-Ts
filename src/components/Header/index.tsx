@@ -19,12 +19,14 @@ const Header = ({ cityObject }: Props) => {
                 <Image source={{ uri: user.avatar }} style={Styles.Avatar} />
             </View>
 
-            <View style={Styles.LocationAreaInfo}>
-                <Svgs.Location width={18} height={18} fill={Colors.green}/>
-                <Text style={Styles.LocationText}>
-                    {cityObject.isoCountryCode}, {cityObject.district}
-                </Text>
-            </View>
+            {cityObject.isoCountryCode !== "" && cityObject.district !== "" &&
+                <View style={Styles.LocationAreaInfo}>
+                    <Svgs.Location width={18} height={18} fill={Colors.green}/>
+                    <Text style={Styles.LocationText}>
+                        {cityObject.isoCountryCode}, {cityObject.district}
+                    </Text>
+                </View>
+            }
 
             <View style={Styles.HelloArea}>
                 <Text style={Styles.Hello}>Olá, {user.name}</Text>
