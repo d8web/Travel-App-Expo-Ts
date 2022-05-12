@@ -1,17 +1,18 @@
-import { ImageSourcePropType } from "react-native";
+import { AttractiveType } from "./AttractiveType";
 
 export type TourType = {
     id: number;
-    meansOfLocomotion: "4X4" | "Carro padrão" | "Quadriciclo" | "Bicicleta" | "Cavalo" | "Caminhada";
-    attractivesIncluded: [number];
-    background: ImageSourcePropType;
-    video?: string;
-    groups?: boolean; // Leva grupos [sim, não]
-    maxPeople: number;
-    minPeople: number;
+    idAgency: number;
+    name: string;
+    meansOfLocomotion: string;
+    background: string;
+    attractivesIncluded: string;
+    guidesOnVehicleClient: boolean;
     pricePerPeople: number;
-    priceSpecial?: number;
-    descriptionTour: string;
-    whatsToTake: string;
-    observations: string;
+    agencyInfo: {
+        name: string;
+        type: string;
+        phone: string;
+    }
+    // attractives: AttractiveType[]
 }

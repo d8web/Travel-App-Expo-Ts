@@ -1,6 +1,6 @@
 import AsyncStorageLib from "@react-native-async-storage/async-storage";
 
-const BASE_API: string = "http://192.168.1.103/carrancas_backend/public/api";
+const BASE_API: string = "http://192.168.1.100/carrancas_backend/public/api";
 
 export default {
     checkToken: async (token: string) => {
@@ -113,6 +113,28 @@ export default {
         const token = await AsyncStorageLib.getItem("token");
 
         const req = await fetch(`${BASE_API}/parks`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        const json = await req.json();
+        return json;
+    },
+    getOnePark: async (id: number) => {
+        const token = await AsyncStorageLib.getItem("token");
+
+        const req = await fetch(`${BASE_API}/park/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        const json = await req.json();
+        return json;
+    },
+    getTours: async () => {
+        const token = await AsyncStorageLib.getItem("token");
+
+        const req = await fetch(`${BASE_API}/tours`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

@@ -8,10 +8,16 @@ import { MainTabProps } from "../../stacks/MainTab";
 const CategoryItem = (item: CategoryType, index: number, navigation: MainTabProps) => {
 
     const handleGoScreen = (id: number) => {
-        if(id === 5) {
-            navigation.navigate("Parks");
-        } else {
-            alert("ok")
+        switch(id) {
+            case 4:
+                navigation.navigate("Tours");
+            break;
+            case 5:
+                navigation.navigate("Parks");
+            break;
+            default:
+                alert("ok");
+            break;
         }
     }
 

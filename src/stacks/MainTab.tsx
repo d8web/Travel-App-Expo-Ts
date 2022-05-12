@@ -11,6 +11,7 @@ import Parks from "../screens/Parks";
 import Attractive from "../screens/Atractive";
 import PopularLocations from "../screens/PopularLocations";
 import SinglePark from "../screens/SinglePark";
+import Tours from "../screens/Tours";
 
 export type TabStackList = {
     Home: undefined;
@@ -22,13 +23,14 @@ export type TabStackList = {
     Favorites: undefined;
     Profile: undefined;
     Parks: undefined;
+    SinglePark: {
+        id: number;
+    };
     Attractive: {
         id: number;
     };
     PopularLocations: undefined;
-    SinglePark: {
-        id: number;
-    };
+    Tours: undefined;
 };
 
 export type MainTabProps = NativeStackNavigationProp<TabStackList>
@@ -50,5 +52,6 @@ export default () => (
         <Screen name="Attractive" component={Attractive}/>
         <Screen name="PopularLocations" component={PopularLocations}/>
         <Screen name="SinglePark" component={SinglePark}/>
+        <Screen name="Tours" component={Tours}/>
     </Navigator>
 );

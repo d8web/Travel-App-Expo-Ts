@@ -7,14 +7,15 @@ type Props = {
     image: string;
     title: string;
     location: string;
-    onPress: () => any
+    onPress: () => any,
+    small?: boolean;
 }
 
-const AttractiveItem = ({image, title, location, onPress}: Props) => {
+const AttractiveItem = ({image, title, location, onPress, small}: Props) => {
     return (
         <TouchableOpacity
             onPress={onPress}
-            style={Styles.Container}
+            style={[Styles.Container, { height: small ? 250 : 320 }]}
         >
             <ImageBackground
                 source={{ uri: image }}

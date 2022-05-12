@@ -25,6 +25,7 @@ import Focus from "../assets/svgs/focus.svg";
 import StarFull from "../assets/svgs/star.svg";
 import StarEmpty from "../assets/svgs/star_empty.svg";
 import StarHalf from "../assets/svgs/star_half.svg";
+import Whatsapp from "../assets/svgs/whatsapp.svg";
 
 export const Svgs = {
     User,
@@ -56,5 +57,6 @@ export const Svgs = {
     Focus,
     StarFull,
     StarEmpty,
-    StarHalf
+    StarHalf,
+    Whatsapp
 }
