@@ -78,7 +78,7 @@ const Profile = () => {
         if(passwordField !== "" && passwordConfirmField !== "" && passwordField === passwordConfirmField) {
             fields.push({ password: passwordField, password_confirm: passwordConfirmField });
         } else {
-            alert("As senhas precisam estar preenchidas e ter o mesmo valor!");
+            // alert("As senhas precisam estar preenchidas e ter o mesmo valor!");
         }
 
         if(fields.length > 0) {
