@@ -1,4 +1,4 @@
-import { Image, Text, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import Styles from "./styles";
 
 import { Colors, Svgs } from "../../constants";
@@ -17,6 +17,9 @@ const Header = ({ cityObject }: Props) => {
         <>
             <View style={Styles.Hero}>
                 <Image source={{ uri: user.avatar }} style={Styles.Avatar} />
+                <TouchableOpacity onPress={() => alert("Fazer logout")}>
+                    <Svgs.Power width={30} height={30} fill={Colors.darkGray} />
+                </TouchableOpacity>
             </View>
             
             <View style={Styles.LocationAreaInfo}>
