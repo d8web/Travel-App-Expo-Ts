@@ -1,6 +1,7 @@
 import AsyncStorageLib from "@react-native-async-storage/async-storage";
+import * as ImagePicker from 'expo-image-picker';
 
-const BASE_API: string = "http://192.168.1.100/carrancas_backend/public/api";
+const BASE_API: string = "http://192.168.1.104/carrancas_backend/public/api";
 
 export default {
     checkToken: async (token: string) => {
@@ -139,6 +140,47 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         });
+        const json = await req.json();
+        return json;
+    },
+    updateAvatar: async (formData: FormData) => {
+        const token = await AsyncStorageLib.getItem("token");
+
+        const req = await fetch(`${BASE_API}/user/avatar`, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                Accept: "application/json",
+                Authorization: `Bearer ${token}`,
+                "content-type": "multipart/form-data",
+            },
+        });
+        const json = await req.json();
+        return json;
+    },
+    getUserInfo: async () => {
+        const token = await AsyncStorageLib.getItem("token");
+
+        const req = await fetch(`${BASE_API}/user`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        const json = await req.json();
+        return json;
+    },
+    updateUser: async (name?: string, email?: string, password?: string, password_confirm?: string) => {
+        const token = await AsyncStorageLib.getItem("token");
+
+        const req = await fetch(`${BASE_API}/user`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({ name, email, password, password_confirm })
+        })
         const json = await req.json();
         return json;
     },
