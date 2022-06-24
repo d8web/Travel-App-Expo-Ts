@@ -80,7 +80,7 @@ const Map = () => {
         });
     }
 
-    const KEY = "AIzaSyAg0MjGMmpj4HxUllQBt5bp7aXzHOr_ld8";
+    const KEY = "";
 
     const getCurrentLocation = async () => {
 
